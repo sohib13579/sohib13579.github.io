@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>التحيز والخصوصية والشفافية في الذكاء الاصطناعي — بحث صهيب مصطفى أحمد</title>
+  <meta name="description" content="عرض تفاعلي لبحث علمي: دراسة تحليلية في ثلاثة تحديات أخلاقية وتقنية تلازم الذكاء الاصطناعي. إعداد الطالب صهيب مصطفى أحمد، نوفمبر 2026.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%231C1913'/%3E%3Cpath d='M32 14 52 50H12z' fill='none' stroke='%23E8B966' stroke-width='4'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/fonts.css">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
+</head>
+<body>
+
+  <!-- ═══════════════ مكتبة الأيقونات (SVG Sprite) ═══════════════ -->
+  <svg class="sprite" aria-hidden="true" focusable="false">
+    <defs>
+      <symbol id="i-scale" viewBox="0 0 24 24"><path d="M12 4v16"/><path d="M8 20h8"/><path d="M4 7h16"/><path d="M4 7 1.8 12.2a3.2 3.2 0 0 0 6.4 0L4 7Z"/><path d="M20 7l-2.2 5.2a3.2 3.2 0 0 0 6.4 0L20 7Z"/></symbol>
+      <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2 12s3.5-6.5 10-6.5S22 12 22 12s-3.5 6.5-10 6.5S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V6l7-3Z"/><path d="M9.3 12.2l2 2 3.6-4.2"/></symbol>
+      <symbol id="i-feather" viewBox="0 0 24 24"><path d="M21 3c-7.5.5-12.5 5-14.5 12L3 21"/><path d="M21 3c-.5 7.5-5 12.5-12 14.5"/><path d="M9 15l6-6"/></symbol>
+      <symbol id="i-book" viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20V3H6.5A2.5 2.5 0 0 0 4 5.5v14Z"/><path d="M20 17v4H6.5A2.5 2.5 0 0 1 4 18.5"/></symbol>
+      <symbol id="i-cursor" viewBox="0 0 24 24"><path d="M4 4l7 16 2.4-6.6L20 11 4 4Z"/></symbol>
+      <symbol id="i-law" viewBox="0 0 24 24"><path d="M12 3 3 8h18L12 3Z"/><path d="M5 8v9M9.6 8v9M14.4 8v9M19 8v9"/><path d="M3 21h18"/><path d="M4 17h16"/></symbol>
+      <symbol id="i-chip" viewBox="0 0 24 24"><rect x="7" y="7" width="10" height="10" rx="2"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></symbol>
+      <symbol id="i-db" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="2.6"/><path d="M4 5v14c0 1.5 3.6 2.7 8 2.7s8-1.2 8-2.7V5"/><path d="M4 12c0 1.5 3.6 2.7 8 2.7s8-1.2 8-2.7"/></symbol>
+      <symbol id="i-mic" viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><path d="M12 18v3"/></symbol>
+      <symbol id="i-brief" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"/><path d="M3 12h18"/></symbol>
+      <symbol id="i-id" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="11" r="2"/><path d="M6 16c.7-1.7 1.6-2.4 2.5-2.4s1.8.7 2.5 2.4"/><path d="M14 9h4M14 13h4"/></symbol>
+      <symbol id="i-wave" viewBox="0 0 24 24"><path d="M3 10v4M7.5 7v10M12 3v18M16.5 7v10M21 10v4"/></symbol>
+      <symbol id="i-nodes" viewBox="0 0 24 24"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><circle cx="10" cy="18" r="2.5"/><path d="M8.3 7.2l7.2.6M6.8 8.4l2.3 7.3M16 9.6l-4.5 6.3"/></symbol>
+      <symbol id="i-docs" viewBox="0 0 24 24"><rect x="8" y="7" width="12" height="14" rx="2"/><path d="M16 3H6a2 2 0 0 0-2 2v12"/><path d="M12 12h4M12 16h4"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M4 12.5l5 5L20 6.5"/></symbol>
+      <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+      <symbol id="i-down" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M6 13l6 6 6-6"/></symbol>
+      <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M19 12H5"/><path d="M11 6l-6 6 6 6"/></symbol>
+      <symbol id="i-triangle" viewBox="0 0 24 24"><path d="M12 4 21 19H3L12 4Z"/></symbol>
+      <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.9-6.6"/><path d="M21 3v6h-6"/></symbol>
+      <symbol id="i-phone" viewBox="0 0 24 24"><rect x="7" y="2.5" width="10" height="19" rx="2.5"/><path d="M10 5.5h4"/><path d="M10.5 18.5h3"/></symbol>
+      <symbol id="i-euro" viewBox="0 0 24 24"><path d="M17 5.5A7 7 0 0 0 7.6 9M17 18.5A7 7 0 0 1 7.6 15"/><path d="M4 10.5h8M4 13.5h8"/></symbol>
+      <symbol id="i-ext" viewBox="0 0 24 24"><path d="M7 17 17 7"/><path d="M8 7h9v9"/></symbol>
+    </defs>
+  </svg>
+
+  <!-- ═══════════════ شريط التقدّم العلوي ═══════════════ -->
+  <div class="progress" aria-hidden="true"><span id="progressBar"></span></div>
+
+  <!-- ═══════════════ السكك الجانبية (فهرس المحاور) ═══════════════ -->
+  <nav class="rail" aria-label="فهرس المحاور">
+    <a href="#intro"        data-target="intro"><i></i><span>المقدمة</span></a>
+    <a href="#bias"         data-target="bias"><i></i><span>التحيز</span></a>
+    <a href="#privacy"      data-target="privacy"><i></i><span>الخصوصية</span></a>
+    <a href="#transparency" data-target="transparency"><i></i><span>الشفافية</span></a>
+    <a href="#tension"      data-target="tension"><i></i><span>التوتر</span></a>
+    <a href="#recs"         data-target="recs"><i></i><span>التوصيات</span></a>
+    <a href="#conclusion"   data-target="conclusion"><i></i><span>الخاتمة</span></a>
+  </nav>
+
+  <!-- ═══════════════ الشريط العلوي ═══════════════ -->
+  <header class="topbar">
+    <div class="container topbar-in">
+      <a class="brand" href="#hero">
+        <svg class="ic"><use href="#i-triangle"/></svg>
+        <span>التحيز <b>·</b> الخصوصية <b>·</b> الشفافية</span>
+      </a>
+      <nav class="topnav" aria-label="تنقل رئيسي">
+        <a href="#intro">المقدمة</a>
+        <a href="#bias">التحيز</a>
+        <a href="#privacy">الخصوصية</a>
+        <a href="#transparency">الشفافية</a>
+        <a href="#tension">التوتر</a>
+        <a href="#recs">التوصيات</a>
+        <a href="#conclusion">الخاتمة</a>
+        <a href="#refs">المراجع</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ═══════════════════════════════ HERO ═══════════════════════════════ -->
+    <section id="hero" class="hero" data-chapter="hero">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="container hero-in">
+        <p class="hero-kicker reveal">بحث علمي — دراسة تحليلية في ثلاثة تحديات أخلاقية وتقنية</p>
+        <h1 class="hero-title reveal" data-d="80">
+          <span class="hero-line hero-line-1">
+            <a class="hero-word w-bias" href="#bias" data-cap="نتائج أسوأ لفئة معينة من الناس، بسبب جنسهم أو لونهم أو لغتهم — بشكل متكرر لا خطأ عابر.">التحيز</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a class="hero-word w-privacy" href="#privacy" data-cap="ماذا يعرف النظام عنك؟ ومن يحصل على ذلك؟ وما الذي يكشفه النموذج دون قصد؟">الخصوصية</a>
+            <span class="sep" aria-hidden="true">·</span>
+            <a class="hero-word w-transp" href="#transparency" data-cap="هل يستطيع أحد أن يفهم كيف وصل النظام إلى قراره؟">الشفافية</a>
+          </span>
+          <span class="hero-line hero-line-2">في الذكاء الاصطناعي</span>
+        </h1>
+        <p id="heroCaption" class="hero-caption reveal" data-d="160" aria-live="polite">ثلاثة تحديات موجودة في كل قرار يتخذه الذكاء الاصطناعي — انقر أي كلمة للانتقال إلى محورها.</p>
+        <div class="hero-foot reveal" data-d="240">
+          <div class="author-plate">
+            <span class="ap-label">إعداد الطالب</span>
+            <strong class="ap-name">صهيب مصطفى أحمد</strong>
+            <span class="ap-date">نوفمبر 2026</span>
+          </div>
+          <a class="hero-cta" href="#intro">
+            ابدأ القراءة
+            <svg class="ic"><use href="#i-down"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ المقدمة: قصة COMPAS ═══════════════════════════ -->
+    <section id="intro" class="section" data-chapter="intro">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">00</span>
+          <p class="kicker">المقدمة · قصة تفتح البحث</p>
+          <h2>COMPAS: برنامج يقرر مصير الناس، ويخطئ بلا نية</h2>
+        </header>
+
+        <div class="prose">
+          <p class="lead reveal">في عام 2016 نشر موقع ProPublica الأمريكي تحقيقًا عن برنامج اسمه <b>COMPAS</b>، تستعين به بعض المحاكم في أمريكا لتقدير احتمال أن يرتكب المتهم جريمة جديدة. وجد الصحفيون أن المتهمين السود الذين لم يرتكبوا أي جريمة بعد ذلك نصّفهم البرنامج خطأً «شديدي الخطورة» بنسبة 44.9%، بينما كانت النسبة 23.5% فقط للمتهمين البيض في الوضع نفسه.</p>
+          <p class="reveal" data-d="60">هذه القصة تلخص موضوع البحث كله. فعندما يتخذ برنامج قرارًا يمس حياة إنسان، تظهر ثلاثة أسئلة: هل هذا القرار عادل أم منحاز؟ وما البيانات التي أخذها البرنامج عن الناس ليصل إليه؟ وهل يستطيع أحد أن يفهم كيف وصل إلى هذه النتيجة؟</p>
+          <p class="reveal" data-d="120">ولم يعد الذكاء الاصطناعي شيئًا بعيدًا عنا: هو اليوم الذي يقرر من يُقبل في وظيفة ومن يحصل على قرض، وهو الذي يختار لك ما يظهر على هاتفك كل صباح من فيديوهات وإعلانات. وكلما زاد عدد القرارات التي نتركها له، زادت أهمية أن نسأل: هل نثق به؟ وعلى أي أساس؟</p>
+        </div>
+
+        <figure class="compas reveal" data-d="120" aria-label="مقارنة نسب الوسم الخاطئ في برنامج COMPAS">
+          <figcaption class="compas-title">من لم يرتكبوا أي جريمة بعد ذلك، ووُسموا خطأً «شديدي الخطورة»</figcaption>
+          <div class="compas-row">
+            <span class="compas-label">المتهمون السود</span>
+            <div class="cbar"><span class="cbar-fill f-rust" data-w="44.9"></span></div>
+            <span class="compas-value num"><span data-count="44.9" data-dec="1">0</span>%</span>
+          </div>
+          <div class="compas-row">
+            <span class="compas-label">المتهمون البيض</span>
+            <div class="cbar"><span class="cbar-fill f-ink" data-w="23.5"></span></div>
+            <span class="compas-value num"><span data-count="23.5" data-dec="1">0</span>%</span>
+          </div>
+          <p class="compas-note">لم يكتب أحد في البرنامج جملة تقول «ظلموا السود»، ومع ذلك خرجت النتيجة هكذا.<span class="src">تحقيق ProPublica، 2016</span></p>
+        </figure>
+
+        <div class="q-grid">
+          <a class="q-card reveal" href="#bias" data-d="0">
+            <span class="q-num num">س١</span>
+            <h3>هل هذا القرار عادل أم منحاز؟</h3>
+            <p>المحور الأول — <b class="c-bias">التحيز</b></p>
+          </a>
+          <a class="q-card reveal" href="#privacy" data-d="90">
+            <span class="q-num num">س٢</span>
+            <h3>ما البيانات التي أخذها البرنامج عن الناس؟</h3>
+            <p>المحور الثاني — <b class="c-privacy">الخصوصية</b></p>
+          </a>
+          <a class="q-card reveal" href="#transparency" data-d="180">
+            <span class="q-num num">س٣</span>
+            <h3>هل يستطيع أحد فهم كيف وُصل إلى النتيجة؟</h3>
+            <p>المحور الثالث — <b class="c-transp">الشفافية</b></p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ المحور الأول: التحيز ═══════════════════════════ -->
+    <section id="bias" class="section chapter" data-chapter="bias">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">01</span>
+          <p class="kicker">المحور الأول</p>
+          <h2>التحيز في أنظمة الذكاء الاصطناعي</h2>
+          <p class="chapter-lead">معناه ببساطة أن النظام يعطي نتائج أسوأ لفئة معينة من الناس — بسبب جنسهم أو لونهم أو لغتهم أو أي صفة أخرى — وبشكل متكرر، لا مجرد خطأ عابر.</p>
+        </header>
+
+        <!-- من أين يأتي؟ -->
+        <div class="sub reveal">
+          <h3 class="sub-title">من أين يأتي التحيز؟</h3>
+          <p class="sub-lead">يظن كثيرون أن وراء التحيز مبرمجًا عنصريًا تعمّد ذلك، لكن هذا نادر جدًا. الأغلب أن الخطأ يتسلل من الطريقة التي تُبنى بها هذه الأنظمة:</p>
+          <div class="accordion" data-acc>
+            <div class="acc-item">
+              <button class="acc-head" type="button" aria-expanded="false">
+                <svg class="ic"><use href="#i-db"/></svg>
+                <span class="acc-title">من البيانات</span>
+                <span class="acc-hint">النظام يتعلم مما نعطيه…</span>
+                <svg class="ic acc-chevron"><use href="#i-down"/></svg>
+              </button>
+              <div class="acc-body">
+                <p>النظام يتعلم من الأمثلة التي نعطيها له، فإذا كانت الأمثلة ناقصة أو منحازة فسيتعلم النقص والانحياز. مثلًا حين دُرّبت أنظمة لغوية على نصوص من الإنترنت، تعلمت أن تربط الرجال بالوظائف المهنية والنساء بأعمال المنزل — لأن النصوص نفسها كانت تفعل ذلك.</p>
+              </div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" aria-expanded="false">
+                <svg class="ic"><use href="#i-scale"/></svg>
+                <span class="acc-title">من اختيار المعيار</span>
+                <span class="acc-hint">خوارزمية المستشفيات الأميركية…</span>
+                <svg class="ic acc-chevron"><use href="#i-down"/></svg>
+              </button>
+              <div class="acc-body">
+                <p>أشهر مثال: خوارزمية تستخدمها مستشفيات أمريكية لاختيار المرضى الذين يحتاجون رعاية إضافية. كانت تقيس «مقدار ما أُنفق على علاج المريض» على أنه دليل على مدى مرضه. لكن المرضى السود كان يُنفق عليهم أقل بسبب صعوبة وصولهم للعلاج، فظنت الخوارزمية أنهم أصح من غيرهم وهم ليسوا كذلك.</p>
+                <div class="mini-bars">
+                  <div class="mini-row">
+                    <span>نسبة المرضى السود بين من يحصلون على الرعاية — قبل تصحيح المعيار</span>
+                    <div class="mbar"><span data-w="17.7"></span></div>
+                    <b class="num">17.7%</b>
+                  </div>
+                  <div class="mini-row">
+                    <span>بعد تصحيح المعيار</span>
+                    <div class="mbar"><span class="good" data-w="46.5"></span></div>
+                    <b class="num">46.5%</b>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="acc-item">
+              <button class="acc-head" type="button" aria-expanded="false">
+                <svg class="ic"><use href="#i-chip"/></svg>
+                <span class="acc-title">من تصميم النظام وطريقة استخدامه</span>
+                <span class="acc-hint">نجح في التجربة… وفشل في الواقع</span>
+                <svg class="ic acc-chevron"><use href="#i-down"/></svg>
+              </button>
+              <div class="acc-body">
+                <p>حتى لو كانت البيانات سليمة، فاختيار ما يحسبه النظام وما يهمله هو قرار بشري. وقد يُستخدم النظام في ظرف يختلف عما صُمم له، كأن يُدرَّب على بيانات بلد ثم يُطبَّق في بلد آخر دون اختبار. فالنظام الذي ينجح في التجربة قد يفشل في الواقع.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- أمثلة من الواقع -->
+        <div class="sub reveal">
+          <h3 class="sub-title">أمثلة من الواقع</h3>
+          <div class="ex-grid">
+            <article class="ex-card">
+              <svg class="ic ex-ic"><use href="#i-eye"/></svg>
+              <div class="ex-stat num">34.7%</div>
+              <h4>التعرف على الوجوه</h4>
+              <p>اختبرت باحثتان ثلاثة أنظمة تجارية لتحديد جنس الشخص من صورته: الخطأ أقل من 1% مع الرجال ذوي البشرة الفاتحة، لكنه وصل إلى 34.7% مع النساء ذوات البشرة الداكنة في أسوأ نظام. وقال الباحثون إن السبب أن صور التدريب كان معظمها لأصحاب البشرة الفاتحة.</p>
+              <span class="ex-src">دراسة Gender Shades — تفصيلها أسفل المحور</span>
+            </article>
+            <article class="ex-card">
+              <svg class="ic ex-ic"><use href="#i-brief"/></svg>
+              <div class="ex-stat num">2018</div>
+              <h4>التوظيف</h4>
+              <p>نقلت وكالة رويترز أن شركة أمازون ألغت أداة لفرز السير الذاتية لأنها كانت تعطي درجات أقل للسير التي تحتوي كلمة مثل «women's». السبب أن الأداة تعلمت من سير الناجحين في السنوات العشر السابقة، وكان أغلبهم رجالًا. تعلمت من الماضي — والماضي لم يكن عادلًا.</p>
+              <span class="ex-src">وكالة رويترز، 2018</span>
+            </article>
+            <article class="ex-card">
+              <svg class="ic ex-ic"><use href="#i-mic"/></svg>
+              <div class="ex-stat num">×2</div>
+              <h4>تحويل الصوت إلى كتابة</h4>
+              <p>وجدت دراسة أُجريت على خمسة أنظمة من شركات كبرى (مثل جوجل وأبل) أنها تخطئ في فهم كلام السود بنسبة تقارب الضعف مقارنة بالبيض. أي أن الخدمة نفسها تعمل بجودة أقل مع بعض المستخدمين.</p>
+              <span class="ex-src">دراسة على خمسة أنظمة تجارية</span>
+            </article>
+          </div>
+
+          <!-- تجربة تفاعلية: تشبيه الكلمات -->
+          <div class="quiz" data-quiz>
+            <div class="quiz-head">
+              <span class="tag tag-rust">جرّب بنفسك</span>
+              <h4>ماذا تعلّم النموذج من نصوص الإنترنت؟</h4>
+              <p>درّب الباحثون نموذجًا لغويًا على ملايين النصوص المكتوبة على الإنترنت، ثم أرادوا اختبار ما تعلّمه من ربط الكلمات ببعضها. فسألوه سؤالًا واحدًا بسيطًا: <b>إذا كان «الرجل» يقابله في النصوص «المبرمج» — فمن يقابل «المرأة»؟</b></p>
+            </div>
+            <div class="quiz-analogy" aria-label="التشبيه المعروض على النموذج: الرجل يقابله المبرمج — فمن يقابل المرأة؟">
+              <div class="analogy-row">
+                <span class="a-word">الرجل</span>
+                <svg class="ic a-arrow"><use href="#i-arrow"/></svg>
+                <span class="a-match">المبرمج</span>
+              </div>
+              <div class="analogy-row">
+                <span class="a-word">المرأة</span>
+                <svg class="ic a-arrow"><use href="#i-arrow"/></svg>
+                <span class="a-match a-q">؟</span>
+              </div>
+              <p class="quiz-orig">الصيغة الأصلية للسؤال في التجربة: «الرجل بالنسبة للمبرمج، كالمرأة بالنسبة لـ…؟»</p>
+            </div>
+            <p class="quiz-ask">جرّب أن تجيب بنفسك: ما الكلمة التي يكمل النموذج مكان علامة الاستفهام؟</p>
+            <div class="quiz-opts" role="group" aria-label="خيارات الإجابة">
+              <button type="button" class="quiz-opt" data-ok="0">طبيبة</button>
+              <button type="button" class="quiz-opt" data-ok="1">ربة منزل</button>
+              <button type="button" class="quiz-opt" data-ok="0">مهندسة</button>
+            </div>
+            <div class="quiz-feedback" id="quizFeedback" aria-live="polite"></div>
+            <p class="quiz-note" hidden>لم يقل النموذج هذا عن قصد — فهو مجرد صدى لما قرأه في ملايين النصوص التي كتبها البشر. هذا هو التحيز: لا نية سيئة، بل انعكاس لما تعلمه.</p>
+          </div>
+        </div>
+
+        <!-- هل العدالة سهلة التعريف؟ -->
+        <div class="sub reveal">
+          <h3 class="sub-title">هل العدالة سهلة التعريف؟</h3>
+          <p class="sub-lead">قد يبدو أن العدالة مسألة رياضية واضحة، لكنها ليست كذلك. فقبل أن نقيسها لا بد أن نتفق أولًا: <b>من الذي ننظر إليه؟ وماذا نعدّ خطأً؟</b> ولكل اختيار تفسير مختلف للعدالة. وفي قضية COMPAS وقع ذلك حرفيًا: قاست الشركة البرنامج بطريقة، وقاسه الصحفيون بطريقة أخرى، فخرج النظام نفسه عادلًا عند واحدة ومنحازًا عند الأخرى. جرّب المعيارين بنفسك:</p>
+          <div class="fairness" data-fair>
+            <div class="fair-seg" role="group" aria-label="اختر معيار العدالة">
+              <button type="button" class="fair-btn is-on" data-def="1">معيار الشركة</button>
+              <button type="button" class="fair-btn" data-def="2">معيار الصحفيين</button>
+            </div>
+            <div class="fair-panel" id="fairPanel" aria-live="polite">
+              <div class="fair-verdict v-ok" id="fairVerdict"><svg class="ic"><use href="#i-check"/></svg><span>عادل بهذا المعيار</span></div>
+              <div class="fair-steps">
+                <div class="fair-step">
+                  <span class="fs-label">إلى من ننظر؟</span>
+                  <span class="fs-text" id="fairWho">ننظر فقط إلى من وُسموا «شديدي الخطورة» — من السود ومن البيض معًا.</span>
+                </div>
+                <div class="fair-step">
+                  <span class="fs-label">ماذا نقيس؟</span>
+                  <span class="fs-text" id="fairWhat">من منهم ارتكب جريمة فعلًا بعد ذلك؟</span>
+                </div>
+                <div class="fair-step">
+                  <span class="fs-label">ماذا وجدنا؟</span>
+                  <span class="fs-text" id="fairFound">النسبة متقاربة بين المجموعتين في هذه المجموعة — وهذا هو القياس الذي اعتمدته الشركة لتقول إن برنامجها عادل.</span>
+                </div>
+              </div>
+            </div>
+            <p class="fair-why"><b>لماذا لا يتحقق المعياران معًا؟</b> لأن نسبة ارتكاب الجرائم في البيانات الأصلية تختلف بين المجموعتين — فأي تصحيح يجعل النظام عادلًا بهذا المعيار يكسره بالمعيار الآخر، وقد أثبت باحثون هذا التعارض رياضيًا في كثير من الحالات.</p>
+            <p class="fair-foot">والاثنان على حق — وهذا بالضبط ما يجعل «العدالة» قرارًا أخلاقيًا قبل أن يكون معادلة.</p>
+          </div>
+        </div>
+
+        <!-- كيف نعالج المشكلة -->
+        <div class="sub reveal">
+          <h3 class="sub-title">كيف نعالج المشكلة؟</h3>
+          <div class="prose tight">
+            <p>هناك حلول تقنية، مثل تنويع بيانات التدريب أو تعديل النتائج بعد خروجها. لكن الأهم هو التدقيق والمراجعة المستمرة. ومثال ذلك أن الباحثتين اللتين اختبرتا أنظمة الوجوه أعادتا الاختبار بعد نشر نتائجهما، فوجدتا أن الشركات حسّنت أنظمتها فعلًا — أي أن مجرد الفحص العلني يدفع الشركات للتحسن.</p>
+          </div>
+        </div>
+
+        <!-- رأي الباحث -->
+        <aside class="opinion reveal">
+          <div class="op-head"><svg class="ic"><use href="#i-feather"/></svg><span>رأي الباحث</span></div>
+          <blockquote>أرى أن أخطر فكرة في هذا الموضوع هي أن التحيز «مشكلة برمجية ستحلها خوارزمية أذكى». في الغالب النظام يعكس مجتمعًا غير عادل، وتنظيف المرآة لا يغيّر الوجه. كما أن اختيار معنى «العدالة» قرار أخلاقي واجتماعي ولا ينبغي أن يُترك للمبرمجين وحدهم. وأتوقع أيضًا أن الوضع عندنا في العالم العربي أصعب، لأن لغتنا ولهجاتنا أقل وضوحًا في بيانات تدريب هذه الأنظمة — وهذا استنتاج شخصي يحتاج دراسات محلية تؤكده.</blockquote>
+        </aside>
+
+        <!-- دراسة المحور -->
+        <article class="study reveal">
+          <span class="study-tag"><svg class="ic"><use href="#i-book"/></svg> دراسة توضح الفكرة</span>
+          <h4>Gender Shades: التحيز الثلاثي — لون البشرة × الجنس</h4>
+          <p>اختبرت باحثتان أنظمة تجارية للتعرف على الوجوه باستخدام صور متنوعة في لون البشرة والجنس. اتضح أن الأنظمة تكاد لا تخطئ مع الرجال ذوي البشرة الفاتحة، لكن الخطأ يصل إلى أكثر من الثلث مع النساء ذوات البشرة الداكنة. وأهمية الدراسة أنها أثبتت التحيز بالأرقام، ودفعت الشركات لتحسين أنظمتها.</p>
+          <p class="study-cite" dir="ltr">Buolamwini, J., &amp; Gebru, T. (2018). Gender shades: Intersectional accuracy disparities in commercial gender classification. <i>Proceedings of Machine Learning Research, 81</i>, 77–91.</p>
+          <span class="study-page">في الورقة البحثية: ص 5</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ المحور الثاني: الخصوصية ═══════════════════════════ -->
+    <section id="privacy" class="section chapter" data-chapter="privacy">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">02</span>
+          <p class="kicker">المحور الثاني</p>
+          <h2>الخصوصية</h2>
+          <p class="chapter-lead">أنظمة الذكاء الاصطناعي تتحسن كلما زادت البيانات — ولذلك تجمع الشركات كل ما تستطيع: أماكنك وبحثك ومشترياتك وصورك.</p>
+        </header>
+
+        <!-- رأسمالية المراقبة -->
+        <div class="sub reveal">
+          <div class="prose">
+            <p>تصف الباحثة شوشانا زوبوف هذا بـ<b>«رأسمالية المراقبة»</b>: أي أن حياتنا اليومية تتحول إلى مادة خام تُباع للتنبؤ بسلوكنا والتأثير فيه.</p>
+          </div>
+        </div>
+
+        <!-- تجربة إعادة تحديد الهوية -->
+        <div class="sub reveal">
+          <h3 class="sub-title">«حذف الاسم» لا يكفي</h3>
+          <p class="sub-lead">قد تقول الشركة: «لا تقلق، حذفنا الأسماء». لكن هذا لا يحمي كما نتخيل. أثبتت الباحثة لاتانيا سويني أن ثلاث معلومات عادية تكفي وحدها:</p>
+          <div class="reid">
+            <div class="reid-chips">
+              <span class="chip chip-teal"><svg class="ic"><use href="#i-id"/></svg> الرمز البريدي</span>
+              <span class="chip-plus">+</span>
+              <span class="chip chip-teal"><svg class="ic"><use href="#i-docs"/></svg> تاريخ الميلاد</span>
+              <span class="chip-plus">+</span>
+              <span class="chip chip-teal"><svg class="ic"><use href="#i-users"/></svg> الجنس</span>
+              <span class="chip-plus">=</span>
+              <span class="reid-count num"><span data-count="87">0</span>%</span>
+            </div>
+            <p class="reid-caption">من الأمريكيين يمكن تحديد هوياتهم بهذه المعلومات الثلاث فقط</p>
+            <div class="dots" id="dotsGrid" aria-label="كل نقطة تمثل 1% من السكان — 87 نقطة منها قابلة للتحديد" role="img"></div>
+            <p class="dots-legend"><span class="dot-legend-item on"></span> قابل للتحديد <span class="dot-legend-item"></span> غير قابل للتحديد — كل نقطة = 1%</p>
+          </div>
+        </div>
+
+        <!-- تجربة نتفليكس -->
+        <div class="sub reveal">
+          <h3 class="sub-title">قصة نتفليكس: هويات «مجهولة» انكشفت</h3>
+          <p class="sub-lead">نشرت نتفليكس بيانات تقييمات أفلام «مجهولة الهوية» لمسابقة علمية، فتمكن باحثان من كشف هوية بعض المستخدمين بمقارنتها بتقييماتهم العلنية على موقع IMDb:</p>
+          <figure class="flow" aria-label="مخطط: تقاطع بيانات نتفليكس المجهولة مع تقييمات IMDb العلنية يكشف الهوية">
+            <svg viewBox="0 0 720 190" role="img" aria-hidden="true">
+              <g class="flow-box">
+                <rect x="490" y="45" width="200" height="100" rx="6"/>
+                <text x="590" y="88" text-anchor="middle">بيانات نتفليكس</text>
+                <text x="590" y="112" text-anchor="middle" class="sub-t">«مجهولة الهوية»</text>
+              </g>
+              <g class="flow-box">
+                <rect x="30" y="45" width="200" height="100" rx="6"/>
+                <text x="130" y="88" text-anchor="middle">تقييمات IMDb</text>
+                <text x="130" y="112" text-anchor="middle" class="sub-t">علنية</text>
+              </g>
+              <path class="flow-line" d="M480 95 H 252"/>
+              <path class="flow-arrow" d="M252 87 L240 95 L252 103"/>
+              <path class="flow-line-2" d="M360 95 m-8 0 a8 8 0 1 0 16 0 a8 8 0 1 0 -16 0"/>
+              <g class="flow-res">
+                <rect x="300" y="10" width="120" height="34" rx="17"/>
+                <text x="360" y="32" text-anchor="middle">كُشفت الهوية</text>
+              </g>
+            </svg>
+            <figcaption>بمقارنة التقييمات المجهولة بتقييمات علنية على موقع IMDb انكشفت هويات حقيقية — Narayanan و Shmatikov، 2008</figcaption>
+          </figure>
+        </div>
+
+        <!-- تسريب النموذج -->
+        <div class="sub reveal">
+          <h3 class="sub-title">حتى النموذج قد «يفشي السر»</h3>
+          <p class="sub-lead">الأغرب أن النظام المدرَّب نفسه قد يسرّب ما تعلمه. في تجربة على نموذج لغوي من نوع GPT-2، استطاع باحثون بمجرد توجيه أسئلة له أن يستخرجوا مئات النصوص الحرفية من بيانات تدريبه، منها أسماء وأرقام هواتف وعناوين بريد إلكتروني حقيقية. انظر بالأسفل ماذا استُخرج:</p>
+          <div class="leak" data-leak>
+            <div class="leak-head"><span class="leak-dot"></span><span class="leak-dot"></span><span class="leak-dot"></span><span class="leak-title">تسريب من ذاكرة النموذج — مثال توضيحي لطبيعة النصوص المستخرجة</span></div>
+            <div class="leak-body">
+              <p class="leak-prompt">&gt; استخرج نصوصًا محفوظة من بيانات تدريبك…</p>
+              <p class="leak-text" id="leakOut" aria-live="polite"></p>
+            </div>
+            <div class="leak-actions">
+              <button type="button" id="leakReplay" class="btn-ghost"><svg class="ic"><use href="#i-refresh"/></svg> إعادة العرض</button>
+            </div>
+          </div>
+          <div class="callout reveal">
+            <svg class="ic"><use href="#i-shield"/></svg>
+            <p><b>هجوم أخطر:</b> هناك نوع آخر من الهجمات يستطيع تحديد ما إذا كان شخص معين قد استُخدمت بياناته في تدريب النموذج أصلًا. تخيل خطورة ذلك لو كان النموذج مدربًا على سجلات مرضى بمرض معين — فمجرد معرفة أنك ضمن البيانات يكشف أنك مريض.</p>
+          </div>
+        </div>
+
+        <!-- المراقبة -->
+        <div class="sub reveal">
+          <h3 class="sub-title">المراقبة وفقدان السيطرة</h3>
+          <div class="prose">
+            <p>إلى جانب التسريب، هناك مشكلة الاستخدام نفسه: كاميرات التعرف على الوجوه في الشوارع، وبرامج تحليل مشاعر الموظفين، وتتبع السلوك على الإنترنت — كلها تجعلنا مكشوفين في كثير من الأحيان دون أن نعلم. والمشكلة أن الموافقة التي نعطيها عند تثبيت أي تطبيق لا تعني غالبًا أننا فهمنا ما وافقنا عليه.</p>
+          </div>
+        </div>
+
+        <!-- الحلول -->
+        <div class="sub reveal">
+          <h3 class="sub-title">ما الحلول؟</h3>
+          <div class="sol-grid">
+            <article class="sol-card sol-wide">
+              <h4><svg class="ic"><use href="#i-nodes"/></svg> الخصوصية التفاضلية — جرّبها</h4>
+              <p>فكرتها: نضيف قدرًا بسيطًا من التشويش العشوائي على البيانات، فتبقى النتائج العامة صحيحة ولا يمكن معرفة بيانات شخص بعينه. جرّب بنفسك: حرّك مؤشر التشويش وشاهد ماذا يحدث:</p>
+              <div class="dp" data-dp>
+                <div class="dp-controls">
+                  <div class="dp-group seg" role="group" aria-label="اختر حجم المجموعة">
+                    <button type="button" class="seg-btn is-on" data-group="big">مجموعة كبيرة (8 أفراد)</button>
+                    <button type="button" class="seg-btn" data-group="small">أقلية صغيرة (3 أفراد)</button>
+                  </div>
+                  <label class="dp-slider">
+                    <span>قوة التشويش</span>
+                    <input type="range" id="dpNoise" min="0" max="3" step="1" value="0" aria-label="قوة التشويش">
+                    <output id="dpNoiseVal" for="dpNoise">بلا تشويش</output>
+                  </label>
+                </div>
+                <div class="dp-stage">
+                  <div class="dp-bars" id="dpBars"></div>
+                </div>
+                <div class="dp-read num" id="dpAvg">النتيجة العامة: —</div>
+                <p class="dp-note" id="dpNote">بدون تشويش يمكن قراءة بيانات كل فرد — هذا ما تحمينا منه الخصوصية التفاضلية.</p>
+              </div>
+            </article>
+            <article class="sol-card">
+              <h4><svg class="ic"><use href="#i-phone"/></svg> التعلم الاتحادي</h4>
+              <p>النموذج يتدرّب على <b>هاتفك نفسه</b>، ولا تصل بياناتك إلى خادم الشركة أصلًا — ما يُرسل هو نتيجة التدريب فقط لا بياناتك. وقد استخدمته جوجل في لوحة مفاتيح هواتفها.</p>
+            </article>
+            <article class="sol-card">
+              <h4><svg class="ic"><use href="#i-law"/></svg> الحلول القانونية</h4>
+              <ul class="law-list">
+                <li><b>GDPR</b> الأوروبي: يلزم بجمع أقل قدر من البيانات وبحدود الغرض المعلن — الغرامة تصل <b class="num">20</b> مليون يورو أو <b class="num">4%</b> من الإيرادات السنوية.</li>
+                <li>أوقفت إيطاليا استخدام <b>ChatGPT</b> مؤقتًا في مارس <b class="num">2023</b> بسبب مخاوف جمع البيانات.</li>
+                <li>مصر: قانون حماية البيانات الشخصية رقم <b class="num">151</b> لسنة <b class="num">2020</b> — حق معرفة البيانات والموافقة على جمعها وتصحيحها.</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+
+        <!-- رأي الباحث -->
+        <aside class="opinion reveal">
+          <div class="op-head"><svg class="ic"><use href="#i-feather"/></svg><span>رأي الباحث</span></div>
+          <blockquote>أرى أن فكرة «اضغط موافق» لم تعد تحمي أحدًا، فلا أحد يقرأ مئات السياسات الطويلة التي يوافق عليها كل شهر. الأعدل في رأيي أن تتحمل الشركات المسؤولية، فلا تجمع إلا ما تحتاجه فعلًا، بدل أن نحمّل المستخدم عبء حماية نفسه. والحلول التقنية جيدة لكنها لا تكفي وحدها — وبعض الشركات قد ترفع شعار الخصوصية دون تطبيق حقيقي.</blockquote>
+        </aside>
+
+        <!-- دراسة المحور -->
+        <article class="study reveal">
+          <span class="study-tag"><svg class="ic"><use href="#i-book"/></svg> دراسة توضح الفكرة</span>
+          <h4>بيانات نتفليكس: حذف الاسم وحده لا يضمن الخصوصية</h4>
+          <p>نشرت نتفليكس بيانات تقييمات أفلام لمستخدمين بعد حذف أسمائهم لتستخدمها فرق علمية في مسابقة. ومع ذلك قارن باحثان هذه التقييمات بتقييمات علنية على موقع IMDb، وتمكنا من كشف هوية بعض المستخدمين. وتثبت الدراسة أن حذف الاسم وحده لا يضمن الخصوصية.</p>
+          <p class="study-cite" dir="ltr">Narayanan, A., &amp; Shmatikov, V. (2008). Robust de-anonymization of large sparse datasets. <i>Proceedings of the IEEE Symposium on Security and Privacy</i>, 111–125.</p>
+          <span class="study-page">في الورقة البحثية: ص 7</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ المحور الثالث: الشفافية ═══════════════════════════ -->
+    <section id="transparency" class="section chapter" data-chapter="transparency">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">03</span>
+          <p class="kicker">المحور الثالث</p>
+          <h2>الشفافية</h2>
+          <p class="chapter-lead">نقول عن بعض أنظمة الذكاء الاصطناعي إنها «صندوق أسود»: نرى ما يدخل إليها وما يخرج منها، ولا نفهم ما يحدث بينهما.</p>
+        </header>
+
+        <!-- أسباب الصندوق الأسود -->
+        <div class="sub reveal">
+          <p class="sub-lead">والسبب ليس واحدًا — قد يكون لأي من هذه الأسباب الثلاثة:</p>
+          <div class="reasons">
+            <span class="chip chip-ochre"><svg class="ic"><use href="#i-brief"/></svg> الشركة تخفي الكود لأنه سر تجاري</span>
+            <span class="chip chip-ochre"><svg class="ic"><use href="#i-book"/></svg> الناس لا يملكون الخلفية التقنية لفهمه</span>
+            <span class="chip chip-ochre"><svg class="ic"><use href="#i-chip"/></svg> النموذج معقد لدرجة أن مصممه نفسه لا يفسره</span>
+          </div>
+        </div>
+
+        <!-- تجربة الصندوق الأسود -->
+        <div class="sub reveal">
+          <h3 class="sub-title">جرّب الصندوق الأسود بنفسك</h3>
+          <p class="sub-lead">تجربة مبسّطة لقرار آلي مصيري: من يُقبل على قرض ومن يُرفض؟ اختر بيانات مقدم الطلب واطلب القرار، ثم اطلب «تفسيرًا» وشاهد ماذا يحدث:</p>
+          <div class="bb" data-bb>
+            <div class="bb-inputs">
+              <div class="bb-field">
+                <span class="bb-label">الدخل</span>
+                <div class="seg" role="group" aria-label="الدخل" data-bbgroup="inc">
+                  <button type="button" class="seg-btn" data-val="0">منخفض</button>
+                  <button type="button" class="seg-btn is-on" data-val="1">متوسط</button>
+                  <button type="button" class="seg-btn" data-val="2">مرتفع</button>
+                </div>
+              </div>
+              <div class="bb-field">
+                <span class="bb-label">السجل الائتماني</span>
+                <div class="seg" role="group" aria-label="السجل الائتماني" data-bbgroup="rec">
+                  <button type="button" class="seg-btn" data-val="0">متأخرات سابقة</button>
+                  <button type="button" class="seg-btn is-on" data-val="2">نظيف</button>
+                </div>
+              </div>
+              <div class="bb-field">
+                <span class="bb-label">مدة الخبرة</span>
+                <div class="seg" role="group" aria-label="مدة الخبرة" data-bbgroup="exp">
+                  <button type="button" class="seg-btn" data-val="0">قصيرة</button>
+                  <button type="button" class="seg-btn is-on" data-val="1">طويلة</button>
+                </div>
+              </div>
+            </div>
+            <div class="bb-actions">
+              <button type="button" class="btn-solid" id="bbSubmit">قدّم الطلب</button>
+            </div>
+            <div class="bb-verdict" id="bbVerdict" aria-live="polite" hidden>
+              <span class="bb-verdict-label">قرار النظام</span>
+              <strong id="bbVerdictText">—</strong>
+              <span class="bb-verdict-why" id="bbVerdictWhy">لا يشرح النظام السبب.</span>
+            </div>
+            <div class="bb-explain">
+              <button type="button" class="btn-ghost" id="bbExplain">اطلب تفسيرًا للقرار</button>
+              <div class="bb-lime" id="bbLime" hidden>
+                <p class="bb-lime-head">تفسير تقريبي بأداة مثل LIME: تقدير لإسهام كل عامل في القرار — لكنه تخمين من الخارج، لا حقيقة مؤكدة:</p>
+                <div class="lime-rows" id="limeRows"></div>
+                <p class="bb-warning"><svg class="ic"><use href="#i-x"/></svg> تحذير: هذا التفسير تقريبي وقد لا يطابق ما يحدث داخل النموذج فعليًا — بعض الباحثين يرون أن هذه التفسيرات مضللة.</p>
+              </div>
+            </div>
+            <p class="bb-foot">نموذج تجريبي أُنشئ لأغراض العرض فقط، ويجسد الفكرة التي يفتحها البحث: هل نكتفي بمحاولة تفسير النماذج الغامضة، أم نختار منذ البداية نماذج مفهومة؟</p>
+          </div>
+        </div>
+
+        <!-- حق تفسير -->
+        <div class="sub reveal">
+          <h3 class="sub-title">هل لك حق في أن تعرف السبب؟</h3>
+          <div class="prose">
+            <p>تعطي المادة 22 من قانون GDPR الأوروبي الشخص حق ألا يخضع لقرار آلي بالكامل إذا كان يؤثر عليه تأثيرًا كبيرًا، كرفض قرض أو وظيفة. وقد اختلف الباحثون حول دلالته: فبعضهم قال إنها تعني <b>«حقًا في الحصول على تفسير»</b>، وبعضهم قال إن النص لا يمنح أكثر من <b>حق معرفة معلومات عامة عن النظام</b>. والخلاف نفسه يبيّن أن كلمة «الشفافية» ما زالت غير محسومة.</p>
+          </div>
+        </div>
+
+        <!-- التوثيق كبديل -->
+        <div class="sub reveal">
+          <h3 class="sub-title">بديل عملي: التوثيق</h3>
+          <p class="sub-lead">إن تعذر فتح الصندوق الأسود، فيمكن على الأقل أن نكتب له «بطاقة تعريف» — فكرة بسيطة تشبه نشرة الدواء المرفقة بكل علبة. اقلب البطاقة:</p>
+          <div class="flip" id="flipCard" role="button" tabindex="0" aria-pressed="false" aria-label="بطاقة النموذج — انقر لقلبها">
+            <div class="flip-inner">
+              <div class="flip-face flip-front">
+                <span class="tag tag-ochre">بطاقات النماذج — اقترحها باحثون في جوجل</span>
+                <h4>بطاقة النموذج <span dir="ltr">Model Card</span></h4>
+                <p>مثل نشرة الدواء المرفقة بكل علبة — اقلب البطاقة لترى ماذا تكتب</p>
+                <span class="flip-hint"><svg class="ic"><use href="#i-refresh"/></svg> انقر للقلب</span>
+              </div>
+              <div class="flip-face flip-back">
+                <h4>ماذا تكتب البطاقة؟</h4>
+                <ul>
+                  <li><b>لأي غرض</b> صُمم النموذج</li>
+                  <li><b>كيف يعمل</b> مع الفئات المختلفة</li>
+                  <li><b>أين يفشل</b> — بصراحة</li>
+                  <li>ومكملها «صحائف البيانات» التي تشرح <b>مصدر بيانات التدريب</b> — اقترحتها باحثة أخرى</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- هل الشفافية دائمًا حل -->
+        <div class="sub reveal">
+          <h3 class="sub-title">هل الشفافية دائمًا حل؟</h3>
+          <div class="warn-grid">
+            <div class="warn"><svg class="ic"><use href="#i-x"/></svg><p><b>إغراق معلوماتي:</b> إغراق الناس بمعلومات تقنية لا يفهمونها لا يعني أنهم صاروا قادرين على المحاسبة.</p></div>
+            <div class="warn"><svg class="ic"><use href="#i-x"/></svg><p><b>ستار للمسؤولية:</b> قد تكون الشفافية الشكلية ستارًا يخفي المسؤولية الحقيقية.</p></div>
+            <div class="warn"><svg class="ic"><use href="#i-x"/></svg><p><b>سلاح للمحتالين:</b> كشف تفاصيل النظام بالكامل قد يمكّن المحتالين من الالتفاف عليه.</p></div>
+          </div>
+          <div class="prose tight">
+            <p>فالمهم أن تكون الشفافية <b>مفيدة لمن يحتاجها</b>، لا مجرد كمية كبيرة من الوثائق.</p>
+          </div>
+        </div>
+
+        <!-- رأي الباحث -->
+        <aside class="opinion reveal">
+          <div class="op-head"><svg class="ic"><use href="#i-feather"/></svg><span>رأي الباحث</span></div>
+          <blockquote>أميل إلى رأي رودن: إذا كان القرار يتعلق بحرية إنسان أو علاجه، أفضّل نظامًا أقل دقة بقليل لكنه مفهوم، على نظام أدق لا يمكن مساءلته. وأرى أن أهم شفافية ليست في شرح الخوارزمية، بل في شفافية الجهة التي تستخدمها: ما القرارات التي تتخذها بالنظام؟ وكم نسبة أخطائه؟ ولمن يشتكي المتضرر؟ هذه أسئلة تُجاب دون كشف أي سر تجاري.</blockquote>
+        </aside>
+
+        <!-- دراسة المحور -->
+        <article class="study reveal">
+          <span class="study-tag"><svg class="ic"><use href="#i-book"/></svg> دراسة توضح الفكرة</span>
+          <h4>الصندوق الأسود في القرارات الخطيرة — رأي سينثيا رودن</h4>
+          <p>ناقشت الباحثة سينثيا رودن فكرة تفسير النماذج المعقدة بعد تدريبها، ورأت أن هذه التفسيرات قد تكون مضللة. واقترحت أن نستخدم في القرارات الخطيرة، كالقضاء والطب، نماذج بسيطة مفهومة منذ البداية — وبيّنت أنها كثيرًا ما تحقق دقة قريبة من النماذج المعقدة.</p>
+          <p class="study-cite" dir="ltr">Rudin, C. (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. <i>Nature Machine Intelligence, 1</i>(5), 206–215.</p>
+          <span class="study-page">في الورقة البحثية: ص 8</span>
+        </article>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ المحور الرابع: التوتر بين الثلاثة ═══════════════════════════ -->
+    <section id="tension" class="section chapter dark" data-chapter="tension">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">04</span>
+          <p class="kicker">المحور الرابع</p>
+          <h2>التوتر بين الثلاثة</h2>
+          <p class="chapter-lead">لو كانت هذه المحاور الثلاثة تسير في اتجاه واحد لكان الأمر سهلًا — لكنها تتصادم أحيانًا. انقر على خطوط التوتر في المثلث لترى القصة:</p>
+        </header>
+
+        <div class="tension-wrap reveal">
+          <svg class="triangle-svg" viewBox="0 0 560 400" aria-hidden="true">
+            <line id="edge1" class="edge" x1="280" y1="60" x2="470" y2="330"/>
+            <line id="edge2" class="edge" x1="280" y1="60" x2="90" y2="330"/>
+            <line id="edge0" class="edge base" x1="90" y1="330" x2="470" y2="330"/>
+            <g class="node n-bias"><circle cx="280" cy="60" r="10"/><text x="280" y="28" text-anchor="middle">العدالة</text></g>
+            <g class="node n-privacy"><circle cx="470" cy="330" r="10"/><text x="478" y="365" text-anchor="middle">الخصوصية</text></g>
+            <g class="node n-transp"><circle cx="90" cy="330" r="10"/><text x="82" y="365" text-anchor="middle">الشفافية</text></g>
+          </svg>
+          <div class="tension-side">
+            <div class="t-btns">
+              <button type="button" class="t-btn" data-t="1"><span class="t-line l-bp"></span> العدالة تحتاج بيانات… والخصوصية تمنعها</button>
+              <button type="button" class="t-btn" data-t="2"><span class="t-line l-bp"></span> حماية الخصوصية قد تضر الأقليات</button>
+              <button type="button" class="t-btn" data-t="3"><span class="t-line l-tp"></span> الشفافية قد تكشف الخصوصية</button>
+            </div>
+            <div class="tension-panel" id="tensionPanel" aria-live="polite">
+              <p id="tensionText">انقر على أي خط توتر لتقرأ القصة — كل خط يمثل تصادمًا حقيقيًا بين قيمتين نريدهما معًا.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="sub reveal">
+          <h3 class="sub-title sub-light">الخلاصة: لا توجد وصفة واحدة — المطلوب هو الموازنة حسب كل حالة</h3>
+          <div class="ctx-grid">
+            <article class="ctx-card">
+              <span class="ctx-icon ic-bias"><svg class="ic"><use href="#i-brief"/></svg></span>
+              <h4>نظام التوظيف</h4>
+              <p>يحتاج تدقيقًا أكبر في <b class="c-bias">العدالة</b></p>
+            </article>
+            <article class="ctx-card">
+              <span class="ctx-icon ic-privacy"><svg class="ic"><use href="#i-shield"/></svg></span>
+              <h4>النظام الطبي</h4>
+              <p>يحتاج حماية أشد لـ<b class="c-privacy">الخصوصية</b></p>
+            </article>
+            <article class="ctx-card">
+              <span class="ctx-icon ic-transp"><svg class="ic"><use href="#i-eye"/></svg></span>
+              <h4>النظام القضائي</h4>
+              <p>يحتاج أعلى درجات <b class="c-transp">التفسير</b></p>
+            </article>
+          </div>
+        </div>
+
+        <!-- دراسة المحور -->
+        <article class="study study-dark reveal">
+          <span class="study-tag"><svg class="ic"><use href="#i-book"/></svg> دراسة توضح الفكرة</span>
+          <h4>الخصوصية تؤثر على العدالة</h4>
+          <p>جرّب باحثون تدريب نماذج بتقنية «الخصوصية التفاضلية» التي تضيف تشويشًا بسيطًا لحماية بيانات الأفراد. وجدوا أن هذا التشويش يخفض الدقة أكثر مع الفئات الأقل تمثيلًا في البيانات، لأن بياناتها قليلة أصلًا فيؤثر فيها التشويش أكثر. أي أن حماية الخصوصية قد تضر الأقليات إذا لم نتنبه لذلك — وهذا مثال واضح على تعارض القيم الثلاث. <span class="hint">↗ لاحظ هذا بالتجربة داخل محور الخصوصية أعلاه.</span></p>
+          <p class="study-cite" dir="ltr">Bagdasaryan, E., Poursaeed, O., &amp; Shmatikov, V. (2019). Differential privacy has disparate impact on model accuracy. <i>Advances in Neural Information Processing Systems 32</i>.</p>
+          <span class="study-page">في الورقة البحثية: ص 9</span>
+        </article>
+      </div>
+    </section>
+
+
+    <!-- ═══════════════════════════ المحور الخامس: التوصيات ═══════════════════════════ -->
+    <section id="recs" class="section chapter" data-chapter="recs">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">05</span>
+          <p class="kicker">المحور الخامس</p>
+          <h2>التوصيات</h2>
+          <p class="chapter-lead">ثلاث جهات، ولكل منها دورها في أن يصبح الذكاء الاصطناعي أكثر عدلًا وأكثر حرصًا على خصوصيتنا وأكثر قابلية للمساءلة:</p>
+        </header>
+
+        <div class="rec-grid">
+          <article class="rec-card reveal">
+            <div class="rec-head"><svg class="ic"><use href="#i-chip"/></svg><h3>للشركات والمطورين</h3></div>
+            <ul class="rec-list">
+              <li>أن توثّق كل نظام والبيانات التي دُرِّب عليها</li>
+              <li>أن تختبر أداءه على <b>كل فئة</b> من المستخدمين، وليس على المتوسط العام فقط</li>
+              <li>أن تجمع أقل قدر من البيانات</li>
+              <li>أن تختبر النظام في الواقع قبل طرحه</li>
+            </ul>
+          </article>
+          <article class="rec-card reveal" data-d="90">
+            <div class="rec-head"><svg class="ic"><use href="#i-law"/></svg><h3>للمشرّعين</h3></div>
+            <ul class="rec-list">
+              <li>أن يفرّقوا بين الأنظمة بحسب <b>خطورتها</b></li>
+              <li>أن يلزموا الجهات التي تستخدم الذكاء الاصطناعي في قرارات مصيرية <b>بالإفصاح</b> عن ذلك</li>
+              <li>أن يضمنوا لكل متضرر <b>حق الاعتراض</b> ومراجعة بشرية حقيقية</li>
+            </ul>
+          </article>
+          <article class="rec-card reveal" data-d="180">
+            <div class="rec-head"><svg class="ic"><use href="#i-book"/></svg><h3>للجامعات والباحثين والمستخدمين</h3></div>
+            <ul class="rec-list">
+              <li>أن ندعم بناء <b>بيانات عربية متنوعة</b></li>
+              <li>أن نُدخل أخلاقيات الذكاء الاصطناعي في <b>المناهج</b></li>
+              <li>ألا يتعامل المستخدم مع مخرجات هذه الأنظمة كحقيقة مطلقة — خاصة في الأمور <b>الطبية والقانونية</b></li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ الخاتمة ═══════════════════════════ -->
+    <section id="conclusion" class="section chapter dark" data-chapter="conclusion">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">06</span>
+          <p class="kicker">الخاتمة</p>
+          <h2>ماذا حصّل البحث؟</h2>
+        </header>
+
+        <div class="sum-grid">
+          <article class="sum-card reveal">
+            <span class="sum-chip sc-bias">التحيز</span>
+            <p>غالبًا ينشأ من بيانات وقرارات تعكس واقعًا غير عادل، وليس من سوء نية — و«العدالة» نفسها فيها أكثر من معنى.</p>
+          </article>
+          <article class="sum-card reveal" data-d="90">
+            <span class="sum-chip sc-privacy">الخصوصية</span>
+            <p>مهددة من أكثر من جهة، والحلول موجودة لكنها ناقصة.</p>
+          </article>
+          <article class="sum-card reveal" data-d="180">
+            <span class="sum-chip sc-transp">الشفافية</span>
+            <p>أصعب مما تبدو، وهذه القيم الثلاث قد تتعارض — فنحتاج للموازنة بينها.</p>
+          </article>
+        </div>
+
+        <blockquote class="final-quote reveal">
+          <p>«السؤال المهم ليس: هل نستخدم الذكاء الاصطناعي؟ — فقد حُسم ذلك — بل: <span class="fq-em">من يُساءل إذا أخطأ؟</span>»</p>
+          <footer>التقنية تتغير بسرعة، لكن يجب أن يبقى لكل قرار يمس حياة الناس جهة مسؤولة عنه.</footer>
+        </blockquote>
+
+        <div class="limit-grid">
+          <article class="limit-card reveal">
+            <h4>حدود البحث</h4>
+            <p>اعتمد على مراجعة دراسات منشورة دون تجارب ميدانية، والمجال يتطور بسرعة.</p>
+          </article>
+          <article class="limit-card reveal" data-d="90">
+            <h4>آفاق بحثية مقترحة</h4>
+            <p>دراسة تحيز النماذج تجاه اللهجات العربية.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════════════════════ المراجع ═══════════════════════════ -->
+    <section id="refs" class="section chapter" data-chapter="refs">
+      <div class="container">
+        <header class="chapter-head reveal">
+          <span class="ghost-num" aria-hidden="true">07</span>
+          <p class="kicker">الوثائق</p>
+          <h2>المراجع والشواهد</h2>
+          <p class="chapter-lead">الدراسات المحورية الخمس المستند إليها في البحث، مع مكانها في الورقة البحثية وروابطها الأصلية.</p>
+        </header>
+
+        <ol class="refs-list">
+          <li class="ref-item reveal">
+            <span class="ref-num num">1</span>
+            <div>
+              <p class="ref-cite" dir="ltr">Buolamwini, J., &amp; Gebru, T. (2018). Gender shades: Intersectional accuracy disparities in commercial gender classification. <i>Proceedings of Machine Learning Research, 81</i>, 77–91.</p>
+              <span class="ref-meta">
+                <span class="ref-where">دراسة المحور الأول — التحيز (ص 5)</span>
+                <a class="ref-link" href="https://proceedings.mlr.press/v81/buolamwini18a.html" target="_blank" rel="noopener">فتح المرجع <svg class="ic"><use href="#i-ext"/></svg></a>
+              </span>
+            </div>
+          </li>
+          <li class="ref-item reveal">
+            <span class="ref-num num">2</span>
+            <div>
+              <p class="ref-cite" dir="ltr">Narayanan, A., &amp; Shmatikov, V. (2008). Robust de-anonymization of large sparse datasets. <i>Proceedings of the IEEE Symposium on Security and Privacy</i>, 111–125.</p>
+              <span class="ref-meta">
+                <span class="ref-where">دراسة المحور الثاني — الخصوصية (ص 7)</span>
+                <a class="ref-link" href="https://www.cs.cornell.edu/~shmat/shmat_oak08netflix.pdf" target="_blank" rel="noopener">فتح المرجع <svg class="ic"><use href="#i-ext"/></svg></a>
+              </span>
+            </div>
+          </li>
+          <li class="ref-item reveal">
+            <span class="ref-num num">3</span>
+            <div>
+              <p class="ref-cite" dir="ltr">Rudin, C. (2019). Stop explaining black box machine learning models for high stakes decisions and use interpretable models instead. <i>Nature Machine Intelligence, 1</i>(5), 206–215.</p>
+              <span class="ref-meta">
+                <span class="ref-where">دراسة المحور الثالث — الشفافية (ص 8)</span>
+                <a class="ref-link" href="https://arxiv.org/abs/1811.10154" target="_blank" rel="noopener">فتح المرجع <svg class="ic"><use href="#i-ext"/></svg></a>
+              </span>
+            </div>
+          </li>
+          <li class="ref-item reveal">
+            <span class="ref-num num">4</span>
+            <div>
+              <p class="ref-cite" dir="ltr">Bagdasaryan, E., Poursaeed, O., &amp; Shmatikov, V. (2019). Differential privacy has disparate impact on model accuracy. <i>Advances in Neural Information Processing Systems 32</i>.</p>
+              <span class="ref-meta">
+                <span class="ref-where">دراسة المحور الرابع — التوتر بين الثلاثة (ص 9)</span>
+                <a class="ref-link" href="https://arxiv.org/abs/1905.12101" target="_blank" rel="noopener">فتح المرجع <svg class="ic"><use href="#i-ext"/></svg></a>
+              </span>
+            </div>
+          </li>
+          <li class="ref-item reveal">
+            <span class="ref-num num">5</span>
+            <div>
+              <p class="ref-cite" dir="ltr">Jobin, A., Ienca, M., &amp; Vayena, E. (2019). The global landscape of AI ethics guidelines. <i>Nature Machine Intelligence, 1</i>(9), 389–399.</p>
+              <span class="ref-meta">
+                <span class="ref-where">الورقة البحثية — محور القوانين والمبادئ (ص 10)</span>
+                <a class="ref-link" href="https://doi.org/10.1038/s42256-019-0088-2" target="_blank" rel="noopener">فتح المرجع <svg class="ic"><use href="#i-ext"/></svg></a>
+              </span>
+            </div>
+          </li>
+        </ol>
+
+        <div class="refs-other reveal">
+          <h3>شواهد أخرى وردت في نص البحث</h3>
+          <div class="chips-wrap">
+            <a class="chip" href="https://www.propublica.org/article/machine-bias-risk-assessments-in-criminal-sentencing" target="_blank" rel="noopener">تحقيق ProPublica عن COMPAS — 2016 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://www.reuters.com/article/us-amazon-com-jobs-automation-insight-idUSKCN1MK08G" target="_blank" rel="noopener">وكالة رويترز عن أداة أمازون — 2018 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://dataprivacylab.org/projects/identifiability/paper1.pdf" target="_blank" rel="noopener">بحث لاتانيا سويني في إعادة تحديد الهوية — 87% <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://en.wikipedia.org/wiki/The_Age_of_Surveillance_Capitalism" target="_blank" rel="noopener">مفهوم «رأسمالية المراقبة» — شوشانا زوبوف <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://arxiv.org/abs/1602.04938" target="_blank" rel="noopener">أداة التفسير LIME <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://arxiv.org/abs/1810.03993" target="_blank" rel="noopener">«بطاقات النماذج» — باحثو جوجل <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://arxiv.org/abs/1803.09010" target="_blank" rel="noopener">«صحائف البيانات» <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://eur-lex.europa.eu/eli/reg/2016/679/oj" target="_blank" rel="noopener">قانون GDPR — المادة 22 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://www.cis.upenn.edu/~aaroth/Papers/privacybook.pdf" target="_blank" rel="noopener">الخصوصية التفاضلية <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://arxiv.org/abs/1602.05629" target="_blank" rel="noopener">التعلم الاتحادي <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://www.unesco.org/en/artificial-intelligence/recommendation-ethics" target="_blank" rel="noopener">توصية اليونسكو — 2021 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://eur-lex.europa.eu/eli/reg/2024/1689/oj" target="_blank" rel="noopener">قانون الذكاء الاصطناعي الأوروبي — 2024 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://www.nist.gov/itl/ai-risk-management-framework" target="_blank" rel="noopener">إطار NIST — 2023 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://ai.gov.eg" target="_blank" rel="noopener">الميثاق المصري للذكاء الاصطناعي المسؤول — 2023 <svg class="ic"><use href="#i-ext"/></svg></a>
+            <a class="chip" href="https://www.privacylaws.com/media/3263/egypt-data-protection-law-151-of-2020.pdf" target="_blank" rel="noopener">قانون حماية البيانات الشخصية المصري رقم 151 لسنة 2020 <svg class="ic"><use href="#i-ext"/></svg></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ═══════════════════════════ التذييل ═══════════════════════════ -->
+  <footer class="footer">
+    <div class="container footer-in">
+      <div class="footer-brand">
+        <svg class="ic"><use href="#i-triangle"/></svg>
+        <div>
+          <strong>التحيز والخصوصية والشفافية في الذكاء الاصطناعي</strong>
+          <span>دراسة تحليلية في ثلاثة تحديات أخلاقية وتقنية</span>
+        </div>
+      </div>
+      <div class="footer-meta">
+        <span>إعداد الطالب: صهيب مصطفى أحمد · نوفمبر 2026</span>
+        <span>جميع الأرقام والشواهد في هذا العرض موثقة في قسم المراجع</span>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
