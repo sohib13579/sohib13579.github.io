@@ -229,21 +229,19 @@
         clearTimeout(timer);
         out.textContent = '';
         out.classList.add('typing');
-        // على الشاشات الصغيرة: كتابة أسرع لتبدو مكتملة أثناء التمرير
-        const FAST = window.innerWidth < 640;
-        let ti = 0, ci = 0, cur = null;
+        // كتابة الجزء كاملًا كوحدة واحدة (لا حرف بحرف) — يضمن سلامة ترتيب
+        // النص العربي المختلط بالإنجليزية على جميع الأجهزة
+        const STEP = window.innerWidth < 640 ? 90 : 130;
+        let ti = 0;
         const step = () => {
           if (ti >= tokens.length) { out.classList.remove('typing'); return; }
           const tk = tokens[ti];
-          if (ci === 0) {
-            cur = document.createElement('span');
-            if (tk.pii) cur.className = 'pii';
-            out.appendChild(cur);
-          }
-          cur.textContent = tk.t[ci];
-          ci++;
-          if (ci >= tk.t.length) { ti++; ci = 0; timer = setTimeout(step, FAST ? 70 : 90); }
-          else timer = setTimeout(step, tk.pii ? (FAST ? 18 : 34) : (FAST ? 9 : 16));
+          const s = document.createElement('span');
+          if (tk.pii) s.className = 'pii';
+          s.textContent = tk.t;
+          out.appendChild(s);
+          ti++;
+          timer = setTimeout(step, STEP);
         };
         step();
       };
