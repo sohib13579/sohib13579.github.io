@@ -229,6 +229,8 @@
         clearTimeout(timer);
         out.textContent = '';
         out.classList.add('typing');
+        // على الشاشات الصغيرة: كتابة أسرع لتبدو مكتملة أثناء التمرير
+        const FAST = window.innerWidth < 640;
         let ti = 0, ci = 0, cur = null;
         const step = () => {
           if (ti >= tokens.length) { out.classList.remove('typing'); return; }
@@ -240,12 +242,12 @@
           }
           cur.textContent = tk.t[ci];
           ci++;
-          if (ci >= tk.t.length) { ti++; ci = 0; timer = setTimeout(step, 90); }
-          else timer = setTimeout(step, tk.pii ? 34 : 16);
+          if (ci >= tk.t.length) { ti++; ci = 0; timer = setTimeout(step, FAST ? 70 : 90); }
+          else timer = setTimeout(step, tk.pii ? (FAST ? 18 : 34) : (FAST ? 9 : 16));
         };
         step();
       };
-      onVisible(out, () => { reduceMotion ? renderInstant() : type(); }, 0.4);
+      onVisible(out, () => { reduceMotion ? renderInstant() : type(); }, 0.2);
       const replay = $('#leakReplay');
       if (replay) replay.addEventListener('click', () => { reduceMotion ? renderInstant() : type(); });
     }
